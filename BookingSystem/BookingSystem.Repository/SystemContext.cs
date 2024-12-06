@@ -21,7 +21,7 @@ namespace BookingSystem.Repository
             {
                
                 string server = Environment.MachineName == "MY_MACHINE" ? "Server1" : "Server2";
-                string connectionString = $"Server={server};Database=OnlineMenuDB;Trusted_Connection=True;";
+                string connectionString = $"Server={server};Database = BookingSystem;Trusted_Connection=True;";
                 optionsBuilder.UseSqlServer(connectionString);
             }
         }
