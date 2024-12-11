@@ -16,7 +16,10 @@ namespace BookingSystem.Repository.Data.Configurations
              builder.Property(P=>P.Name) .IsRequired() 
                 .HasMaxLength(256);
             builder.Property(P => P.Description);
-            builder.Property(P => P.Price).IsRequired();
+            builder.Property(p => p.Price)
+            .HasColumnType("decimal(18,2)")
+            .IsRequired();
+
         }
     }
 }

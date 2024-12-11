@@ -8,8 +8,7 @@ namespace BookingSystem.API.Dtos
         public string CustomerName { get; set; }
      
         public int NationalId { get; set; }
-        public string NationalPicture { get; set; }
-        public string NationalUrl { get; set; }
+        public IFormFile NationalUrl { get; set; }
         public string hall { get; set; }
         public int hallid { get; set; }
         public DateTime TimeSlot { get; set; }

@@ -14,17 +14,18 @@ namespace BookingSystem.Repository
         {
             
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
+       
+      
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
                
-                string server = Environment.MachineName == "MY_MACHINE" ? "Server1" : "Server2";
-                string connectionString = $"Server={server};Database = BookingSystem;Trusted_Connection=True;";
-                optionsBuilder.UseSqlServer(connectionString);
-            }
-        }
+        //        string server = Environment.MachineName == "MY_MACHINE" ? "Server1" : "Server2";
+        //        string connectionString = $"Server={server};Database = BookingSystem;Trusted_Connection=True;";
+        //        optionsBuilder.UseSqlServer(connectionString);
+        //    }
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

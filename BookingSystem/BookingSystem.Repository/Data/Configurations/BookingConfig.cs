@@ -16,12 +16,13 @@ namespace BookingSystem.Repository.Data.Configurations
          builder.Property(B=>B.CustomerName).IsRequired();
             builder.Property(B => B.NationalId)
                 .IsRequired();
-                
-            builder.Property(B=>B.NationalPicture)
-                .IsRequired();
+            
 
-            builder.Property(B=>B.hall) 
-                .IsRequired();
+            
+
+            builder.HasOne(b => b.hall)
+                .WithMany()
+                .HasForeignKey(h => h.hallId);
                 
            
         }

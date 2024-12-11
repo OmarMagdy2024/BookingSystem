@@ -1,9 +1,10 @@
 
+using AutoMapper;
+using BookingSystem.API.Helpers;
 using BookingSystem.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Writers;
-
-
+ 
 namespace BookingSystem.API
 {
 	public class Program
@@ -14,7 +15,7 @@ namespace BookingSystem.API
 
 
 			builder.Services.AddControllers();
-     
+			builder.Services.AddAutoMapper(typeof(MappingProfiles));
             builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<SystemContext>(
@@ -27,6 +28,16 @@ namespace BookingSystem.API
             using var scope = app.Services.CreateScope();
             var services = scope.ServiceProvider;
             var _dbcontext = services.GetRequiredService<SystemContext>();
+			
+
+			try
+			{
+				await _dbcontext.Database.MigrateAsync();
+			}
+			catch (Exception ex) { 
+			
+			
+			}
 
 
             if (app.Environment.IsDevelopment())
