@@ -22,3 +22,4 @@ namespace BookingSystem.Repository.Data.Identity
         }
     }
 }
+
