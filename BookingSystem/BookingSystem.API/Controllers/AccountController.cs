@@ -1,4 +1,8 @@
-﻿using BookingSystem.Core.Models.Identity;
+﻿using AutoMapper;
+using BookingSystem.API.Dtos;
+using BookingSystem.Core.Models.Identity;
+using BookingSystem.Core.Services.Contract;
+using FinalProjectApi.Errors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,47 +10,34 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookingSystem.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+  
     public class AccountController : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IAuthService _authService;
+        private readonly IMapper _mapper;
 
-        public AccountController(UserManager<IdentityUser>userManager , SignInManager<IdentityUser>signInManager)
+        public AccountController(UserManager<IdentityUser>userManager , SignInManager<IdentityUser>signInManager , IAuthService authService , IMapper mapper)
         {
          _userManager = userManager;
-           _signInManager = signInManager;
+         _signInManager = signInManager;
+         _authService = authService;
+         _mapper = mapper;
         }
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpPost("login")]
+        public async Task<ActionResult<UserDTo>>Login(LoginDto model)
         {
-            return new string[] { "value1", "value2" };
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null) return Unauthorized(new ApiResponse(401));
+            var result =_signInManager.CheckPasswordSignInAsync(user , model.Password , false);
+            if(result.IsCompletedSuccessfully is false) if (user == null) return Unauthorized(new ApiResponse(401));
+            return Ok(new UserDTo()
+            {
+                DisplayName = user.
+           
+            });
         }
-
-        // GET api/<AccountController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody]Register registers)
-        {
-            var user = new IdentityUser(userName = registers.Username, Email = registers.Email);
-            var result = await _userManager.CreateAsync(user, registers.Password);
-        }
-
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+    
     }
 }
