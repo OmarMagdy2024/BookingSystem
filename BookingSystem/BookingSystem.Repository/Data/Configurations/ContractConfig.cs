@@ -16,16 +16,16 @@ namespace BookingSystem.Repository.Data.Configurations
             builder.Property(C => C.bookingid)
             .IsRequired();
 
-            builder.Property(C=>C.BrideName) .IsRequired();
+            builder.Property(C => C.BrideName).IsRequired();
 
-            builder.Property(C=>C.GroomName) .IsRequired();
+            builder.Property(C => C.GroomName).IsRequired();
 
             builder.Property(C => C.Amount)
                 .HasColumnType("decimal (18,2)");
-                
-                
 
-                
+
+
+
         }
     }
 }

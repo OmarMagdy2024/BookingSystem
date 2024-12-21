@@ -11,9 +11,9 @@ namespace BookingSystem.Repository.Data.Identity
 {
     public class AppIdentityDbContetxt : IdentityDbContext<AppUser>
     {
-        public AppIdentityDbContetxt(DbContextOptions<AppIdentityDbContetxt>options)
+        public AppIdentityDbContetxt(DbContextOptions<AppIdentityDbContetxt> options) : base(options)
         {
-            
+
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {

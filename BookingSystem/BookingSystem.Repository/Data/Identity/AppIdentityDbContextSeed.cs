@@ -21,7 +21,7 @@ namespace BookingSystem.Repository.Data.Identity
                     UserName = "ahmed.gamal",
                     PhoneNumber = "1234567890"
                 };
-                await _userManager.CreateAsync(user , "pa$$sw0rd");
+                await _userManager.CreateAsync(user, "pa$$sw0rd");
             }
         }
     }

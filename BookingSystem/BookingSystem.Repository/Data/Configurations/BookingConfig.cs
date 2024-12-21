@@ -13,18 +13,18 @@ namespace BookingSystem.Repository.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Booking> builder)
         {
-         builder.Property(B=>B.CustomerName).IsRequired();
+            builder.Property(B => B.CustomerName).IsRequired();
             builder.Property(B => B.NationalId)
                 .IsRequired();
-            
 
-            
+
+
 
             builder.HasOne(b => b.hall)
                 .WithMany()
                 .HasForeignKey(h => h.hallId);
-                
-           
+
+
         }
     }
 }

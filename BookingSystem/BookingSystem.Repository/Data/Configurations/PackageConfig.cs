@@ -13,8 +13,8 @@ namespace BookingSystem.Repository.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Package> builder)
         {
-             builder.Property(P=>P.Name) .IsRequired() 
-                .HasMaxLength(256);
+            builder.Property(P => P.Name).IsRequired()
+               .HasMaxLength(256);
             builder.Property(P => P.Description);
             builder.Property(p => p.Price)
             .HasColumnType("decimal(18,2)")
