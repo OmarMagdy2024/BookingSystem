@@ -19,11 +19,11 @@ namespace BookingSystem.API.Controllers
             _mapper = mapper;
         }
 
-        //[HttpPost("AddBooking")]
-        //public Task<ActionResult<Booking>> AddBooking(BookingDto bookingDto)
-        //{
-        //    _bookingServices.CreateBooking(bookingDto);
+        [HttpPost("AddBooking")]
+        public async Task<ActionResult<Booking>> AddBooking(BookingDto bookingDto)
+        {
+        var user = _bookingServices.CreateBooking()
 
-        //}
+        }
     }
 }

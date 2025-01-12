@@ -10,9 +10,11 @@ namespace BookingSystem.API.Helpers
 
         public MappingProfiles()
         {
-            CreateMap<Booking, BookingDto>().ReverseMap();
-              
-                
+            CreateMap<Booking, BookingDto>()
+                .ForMember(d => d.hall, o => o.MapFrom(s => s.hall.Name));
+               
+
+
         }
 
     }
